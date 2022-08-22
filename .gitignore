@@ -41,3 +41,6 @@ src/main/generated/
 
 ### MacOS ###
 .DS_Store
+
+### AWS ###
+application-real.yml
