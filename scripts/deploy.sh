@@ -23,5 +23,6 @@ chmod +x "$JAR_NAME"
 
 echo "> $JAR_NAME 실행"
 nohup java -jar \
+  -server \
   -Dspring.config.location=/home/ec2-user/app/application.yml \
   "$JAR_NAME" 2>&1 &
