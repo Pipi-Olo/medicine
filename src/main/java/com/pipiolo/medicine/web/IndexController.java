@@ -1,4 +1,4 @@
-package com.pipiolo.medicine;
+package com.pipiolo.medicine.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
