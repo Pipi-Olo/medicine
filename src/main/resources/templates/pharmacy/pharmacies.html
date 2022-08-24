@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <link th:href="@{/css/bootstrap.css}" href="../css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container" style="max-width: 600px">
+  <div class="py-5 text-center">
+    <h2>약국 목록</h2>
+  </div>
+
+  <form th:object="${pharmacySearch}" method="get" class="form-check-inline">
+    <div class="row">
+      <div class="col">
+        <input type="text" th:field="*{pharmacyName}" class="form-control" placeholder="약국명"/>
+      </div>
+      <div class="col">
+        <input type="text" th:field="*{address}" class="form-control" placeholder="주소"/>
+      </div>
+      <div class="col">
+        <button type="submit" class="btn btn-secondary mb-2">검색</button>
+      </div>
+    </div>
+  </form>
+
+  <hr class="my-4">
+  <div>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>약국명</th>
+        <th>전화번호</th>
+        <th>주소</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="pharmacy : ${slice.content}">
+<!--        <td><a th:href="@{/items/{itemId}(itemId=${item.id})}" th:text="${item.id}">상품 ID</a></td>-->
+        <td><a th:text="${pharmacy.name}">약국명</a></td>
+        <td><a th:text="${pharmacy.phoneNumber}">전화번호</a></td>
+        <td><a th:text="${pharmacy.address}">주소</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+<!--  <div class="row">-->
+<!--    <nav-->
+<!--        th:with="-->
+<!--        pageNumber = ${page.number},-->
+<!--        pageSize = ${page.size},-->
+<!--        totalPages = ${page.totalPages}"-->
+<!--        aria-label="Page navigation"-->
+<!--    >-->
+<!--      <ul class="pagination justify-content-center">-->
+
+<!--        &lt;!&ndash; 이전으로 이동 &ndash;&gt;-->
+<!--        <li th:classappend="${page.first} ? 'disabled'" class="page-item">-->
+<!--          <a class="page-link" th:href="@{/items?(page=${pageNumber - 1})}" aria-label="Previous">-->
+<!--            <span aria-hidden="true">&laquo;</span>-->
+<!--          </a>-->
+<!--        </li>-->
+
+<!--        &lt;!&ndash; 특정 페이지로 이동 &ndash;&gt;-->
+<!--        <li th:each="page: ${#numbers.sequence(1, totalPages)}" th:classappend="${page == pageNumber + 1} ? 'active'" class="page-item">-->
+<!--          <a class="page-link" th:href="@{/items?(page=${page - 1})}"  th:text="${page}"></a>-->
+<!--        </li>-->
+
+<!--        &lt;!&ndash; 다음으로 이동 &ndash;&gt;-->
+<!--        <li th:classappend="${page.last} ? 'disabled'" class="page-item">-->
+<!--          <a class="page-link" th:href="@{/items?(page=${pageNumber + 1})}" aria-label="Next">-->
+<!--            <span aria-hidden="true">&raquo;</span>-->
+<!--          </a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </nav>-->
+<!--  </div>-->
+
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary float-start"
+              th:onclick="|location.href='@{/}'|"
+              type="button">홈으로</button>
+    </div>
+  </div>
+
+</div> <!-- /container -->
+
+</body>
+</html>
