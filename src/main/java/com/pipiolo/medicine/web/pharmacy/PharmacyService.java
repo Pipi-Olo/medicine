@@ -17,7 +17,7 @@ public class PharmacyService {
             PharmacySearchCondition searchCondition,
             Pageable pageable
     ) {
-        pharmacyRepository.save(new Pharmacy("test", "1234", "asdfasdf"));
+        pharmacyRepository.save(new Pharmacy("별약국", "031-757-8426", "경기도 성남시 수정구 청계산로 689, 1층 103호 (고등동)"));
 
         return pharmacyRepository.findSliceBySearchCondition(searchCondition, pageable)
                 .map(PharmacyResponse::new);
