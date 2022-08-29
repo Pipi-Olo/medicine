@@ -14,7 +14,7 @@ cache:
 script: "./gradlew clean build"
 
 before_deploy:
-  - zip -r medicine * # AWS CodeDeploy 는 JAR 파일을 인식하지 못한다. -> 압축 파일을 전송한다.
+  - zip -r medicine *                          # AWS CodeDeploy 는 JAR 파일을 인식하지 못한다. -> 압축 파일을 전송한다.
   - mkdir -p deploy
   - mv medicine.zip deploy/medicine.zip
 
@@ -24,10 +24,10 @@ deploy:
     secret_access_key: $AWS_SECRET_KEY         # 외부에서 EC2 에 접근하기 위한 IAM Key
     bucket: medicine-build
     region: ap-northeast-2
-    skip_cleanup: true
+    cleanup: true
     acl: private
     local_dir: deploy                           # deploy 폴더에 있는 파일들을 s3 버킷에 보낸다.
-    wait-until-deployed: true
+    wait_until_deployed: true
     on:
       branch: main
   - provider: codedeploy
@@ -39,7 +39,7 @@ deploy:
     application: medicine                       # CodeDeploy Application
     deployment_group: medicine-codedeploy-group # CodeDeploy Group
     region: ap-northeast-2
-    wait-until-deployed: true
+    wait_until_deployed: true
     on:
       branch: main
 
