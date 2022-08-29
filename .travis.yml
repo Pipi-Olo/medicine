@@ -33,13 +33,15 @@ deploy:
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
-    bucket: medicine-build
-    key: medicine.zip
+    bucket: medicine-build                      # AWS S3 Bucket
+    key: medicine.zip                           # AWS S3 medicine-build Bucket 에 있는 medicine.zip 파일
     bundle_type: zip
-    application: medicine
-    deployment_group: medicine-codedeploy-group
+    application: medicine                       # CodeDeploy Application
+    deployment_group: medicine-codedeploy-group # CodeDeploy Group
     region: ap-northeast-2
     wait-until-deployed: true
+    on:
+      branch: main
 
 notifications:
   email:
