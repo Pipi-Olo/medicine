@@ -1,6 +1,6 @@
 version: 0.0
 os: linux
 files:
-  - sources: /
+  - sources:  /
     destination: /home/ec2-user/deploy
     overwrite: yes
