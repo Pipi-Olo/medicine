@@ -1,8 +1,13 @@
 #!/bin/bash
 
 REPOSITORY=/home/ec2-user/deploy
+PROJECT_LOCATION=/home/ec2-user/app
+PROJECT_NAME=medicine
 
-CURRENT_PID=$(pgrep -fl medicine | grep jar | awk '{print $1}')
+echo "> Build File 복사"
+cp $REPOSITORY/build/libs/*.jar $PROJECT_LOCATION
+
+CURRENT_PID=$(pgrep -fl $PROJECT_LOCATION/$PROJECT_NAME | awk '{print $1}')
 echo "> 현재 구동 중인 Application Pid : $CURRENT_PID"
 
 if [ -z "$CURRENT_PID" ]; then
@@ -15,7 +20,7 @@ fi
 
 echo "> New Application 배포"
 
-JAR_NAME=$(ls -tr $REPOSITORY/build/libs/*.jar | tail -n 1)
+JAR_NAME=$(ls -tr $PROJECT_LOCATION/*.jar | tail -n 1)
 echo "> JAR NAME : $JAR_NAME"
 
 echo "> $JAR_NAME 에 실행권한 추가"
@@ -24,5 +29,5 @@ chmod +x "$JAR_NAME"
 echo "> $JAR_NAME 실행"
 nohup java -jar \
   -server \
-  -Dspring.config.location=/home/ec2-user/app/application.yml \
-  "$JAR_NAME" 2>&1 &
+  -Dspring.config.location=$PROJECT_LOCATION/application.yml \
+  "$JAR_NAME" > $PROJECT_LOCATION/nohup.out 2>&1 &
