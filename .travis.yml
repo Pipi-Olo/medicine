@@ -20,13 +20,13 @@ before_deploy:
 
 deploy:
   - provider: s3
-    access_key_id: $AWS_ACCESS_KEY
-    secret_access_key: $AWS_SECRET_KEY
+    access_key_id: $AWS_ACCESS_KEY             # 외부에서 EC2 에 접근하기 위한 IAM Key
+    secret_access_key: $AWS_SECRET_KEY         # 외부에서 EC2 에 접근하기 위한 IAM Key
     bucket: medicine-build
     region: ap-northeast-2
     skip_cleanup: true
     acl: private
-    local_dir: deploy # deploy 폴더에 있는 파일들을 s3 버킷에 보낸다.
+    local_dir: deploy                           # deploy 폴더에 있는 파일들을 s3 버킷에 보낸다.
     wait-until-deployed: true
     on:
       branch: main

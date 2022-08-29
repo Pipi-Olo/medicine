@@ -2,8 +2,8 @@
 
 REPOSITORY=/home/ec2-user/deploy
 
-CURRENT_PID=$(pgrep -f $REPOSITORY/*.jar)
-echo "현재 구동 중인 Application Pid : $CURRENT_PID"
+CURRENT_PID=$(pgrep -fl medicine | grep jar | awk '{print $1}')
+echo "> 현재 구동 중인 Application Pid : $CURRENT_PID"
 
 if [ -z "$CURRENT_PID" ]; then
   echo "> 현재 구동 중인 Application 이 없으므로 종료하지 않습니다."
