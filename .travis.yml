@@ -34,10 +34,10 @@ deploy:
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
     bucket: medicine-build
-    api_key: medicine.zip
+    key: medicine.zip
     bundle_type: zip
     application: medicine
-    deployment_group: medicine-cdedeploy-group
+    deployment_group: medicine-codedeploy-group
     region: ap-northeast-2
     wait-until-deployed: true
 
