@@ -28,6 +28,8 @@ deploy:
     acl: private
     local_dir: deploy # deploy 폴더에 있는 파일들을 s3 버킷에 보낸다.
     wait-until-deployed: true
+    on:
+      branch: main
 
 notifications:
   email:
